@@ -1,0 +1,37 @@
+<div class="register-form">
+    <h1>Register</h1>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+        <div class="field">
+            <label for="name">Name</label>
+            <input type="text" ngModel id="name" name="name" required>
+        </div>
+
+        <div class="field">
+            <label for="username">Username</label>
+            <input type="text" ngModel id="username" name="username" required>
+        </div>
+
+        <div class="field">
+            <label for="password">Password</label>
+            <input type="password" ngModel id="password" name="password" required>
+        </div>
+
+        <div class="field">
+            <label for="address">Address</label>
+            <input type="text" ngModel id="address" name="address" required>
+        </div>
+
+        <div class="field">
+            <label for="dob">Birthday</label>
+            <input type="date" ngModel id="dob" name="dob">
+        </div>
+
+        <p>
+            You already have an account? <a routerLink="/login" routerLinkActive="active">Log In</a>
+        </p>
+
+        <div class="container-button">
+            <button type="submit" class="submit-button">Sign Up</button>
+        </div>
+    </form>
+</div>

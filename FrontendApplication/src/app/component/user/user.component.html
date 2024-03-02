@@ -1,0 +1,53 @@
+<app-nav></app-nav>
+
+<div class="create-user">
+    <button class="action-btn create-btn" (click)="toggleCreate()">New User</button>
+</div>
+
+<table [hidden]="notCreate">
+    <!-- colonnes -->
+    <tr>
+        <th>Name</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Address</th>
+        <th>Date of Birth</th>
+        <th>Action</th>
+    </tr>
+    <!-- valeurs -->
+    <tr *ngIf="!notCreate">
+        <td><textarea #newname [disabled]="notCreate" type="text" [value]=""></textarea></td>
+        <td><textarea #newusername [disabled]="notCreate" type="text" [value]=""></textarea></td>
+        <td><textarea #newpass [disabled]="notCreate" type="text" [value]=""></textarea></td>
+        <td><textarea #newaddress [disabled]="notCreate" type="text" [value]=""></textarea></td>
+        <td><textarea #newdob [disabled]="notCreate" type="text" [value]=""></textarea></td>
+        <td>
+            <button class="action-btn" (click)="saveUser(newname.value, newusername.value, newpass.value, newaddress.value, newdob.value)">Save</button>
+        </td>
+    </tr>
+</table>
+
+<table>
+    <!-- colonnes -->
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Username</th>
+        <th>Address</th>
+        <th>Date of Birth</th>
+        <th>Action</th>
+    </tr>
+    <!-- valeurs -->
+    <tr *ngFor="let user of users">
+        <td><textarea #id [disabled]="disabled" type="text" [value]="user.id"></textarea></td>
+        <td><textarea #name [disabled]="disabled" type="text" [value]="user.name"></textarea></td>
+        <td><textarea #username [disabled]="disabled" type="text" [value]="user.username"></textarea></td>
+        <td><textarea #address [disabled]="disabled" type="text" [value]="user.address"></textarea></td>
+        <td><textarea #dob [disabled]="disabled" type="text" [value]="user.dob"></textarea></td>
+        <td>
+            <button class="action-btn" (click)="toggleTextarea()">Edit</button>
+            <button class="action-btn" (click)="updateUser(id.value, name.value, username.value, address.value, dob.value)">Save</button>
+            <button class="action-btn" (click)="deleteUserById(user.id!)">Delete</button>
+        </td>
+    </tr>
+</table>

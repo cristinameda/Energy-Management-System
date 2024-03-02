@@ -1,0 +1,29 @@
+version: '3'
+services:
+  postgres:
+    container_name: postgres_device
+    image: postgres:16-alpine3.18
+    ports:
+      - "5434:5432"
+    environment:
+      - POSTGRES_DB=EnergyManagementSystem-Device
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=mmma
+    volumes:
+      - EnergyManagementSystem-Device:/var/lib/postgresql/data
+  app:
+    container_name: ManagementDevice
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_device:5432/EnergyManagementSystem-Device
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=mmma
+    links:
+      - postgres
+
+volumes:
+  EnergyManagementSystem-Device:

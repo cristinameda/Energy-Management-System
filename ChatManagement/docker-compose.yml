@@ -1,0 +1,12 @@
+version: '3'
+services:
+  app:
+    container_name: ManagementChat
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    ports:
+      - "8085:8085"
+
+volumes:
+  EnergyManagementSystem-Chat:

@@ -1,0 +1,18 @@
+<div class="login-form">
+    <h1>Login</h1>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+      <label for="username">Username</label>
+      <input type="text" ngModel id="Username" name="username" required>
+  
+      <label for="password">Password</label>
+      <input type="password" ngModel id="password" name="password" required>
+  
+      <p>
+        Don't have an account yet? <a routerLink="/register" routerLinkActive="active">Register now</a>
+      </p>
+  
+      <div class="container-button">
+        <button type="submit" class="submit-button">Sign In</button>
+      </div>
+    </form>
+  </div>

@@ -1,0 +1,29 @@
+version: '3'
+services:
+  postgres:
+    container_name: postgres_user
+    image: postgres:16-alpine3.18
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_DB=EnergyManagementSystem-User
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=mmma
+    volumes:
+      - EnergyManagementSystem-User:/var/lib/postgresql/data
+  app:
+    container_name: ManagementUser
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_user:5432/EnergyManagementSystem-User
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=mmma
+    links:
+      - postgres
+
+volumes:
+  EnergyManagementSystem-User:

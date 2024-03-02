@@ -1,0 +1,51 @@
+<app-nav></app-nav>
+
+<div class="create-user" [hidden]="userRole === 'CLIENT'">
+    <button class="action-btn create-btn" (click)="toggleCreate()">New Device</button>
+</div>
+
+<table [hidden]="notCreate">
+    <!-- colonnes -->
+    <tr>
+        <th>Description</th>
+        <th>Address</th>
+        <th>Maximum Consumption</th>
+        <th>User Id</th>
+        <th>Action</th>
+    </tr>
+    <!-- valeurs -->
+    <tr *ngIf="!notCreate">
+        <td><textarea #newd [disabled]="notCreate" type="text" [value]=""></textarea></td>
+        <td><textarea #newaddress [disabled]="notCreate" type="text" [value]=""></textarea></td>
+        <td><textarea #newc [disabled]="notCreate" type="text" [value]=""></textarea></td>
+        <td><textarea #newuid [disabled]="notCreate" type="text" [value]=""></textarea></td>
+        <td>
+            <button class="action-btn" (click)="saveDevice(newd.value, newaddress.value, newc.value, newuid.value)">Save</button>
+        </td>
+    </tr>
+</table>
+
+<table>
+    <!-- colonnes -->
+    <tr>
+        <th>Id</th>
+        <th>Description</th>
+        <th>Address</th>
+        <th>Maximum Consumption</th>
+        <th>User Id</th>
+        <th [hidden]="userRole === 'CLIENT'">Action</th>
+    </tr>
+    <!-- valeurs -->
+    <tr *ngFor="let device of devices">
+        <td><textarea #id [disabled]="disabled" type="text" [value]="device.id"></textarea></td>
+        <td><textarea #des [disabled]="disabled" type="text" [value]="device.description"></textarea></td>
+        <td><textarea #address [disabled]="disabled" type="text" [value]="device.address"></textarea></td>
+        <td><textarea #maxc [disabled]="disabled" type="text" [value]="device.maxConsumption"></textarea></td>
+        <td><textarea #uid [disabled]="disabled" type="text" [value]="device.userId"></textarea></td>
+        <td [hidden]="userRole === 'CLIENT'">
+            <button class="action-btn" (click)="toggleTextarea()">Edit</button>
+            <button class="action-btn" (click)="updateDevice(id.value, des.value, address.value, maxc.value, uid.value)">Save</button>
+            <button class="action-btn" (click)="deleteDeviceById(device.id!)">Delete</button>
+        </td>
+    </tr>
+</table>
